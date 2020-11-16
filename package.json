@@ -1,0 +1,28 @@
+{
+  "name": "ERC1155-marketplace",
+  "version": "1.0.0",
+  "description": "A marketplace for a fixed price exchange between dai and an ERC1155 token",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TobiasVosk/ERC1155-marketplace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TobiasVosk/ERC1155-marketplace/issues"
+  },
+  "homepage": "https://github.com/TobiasVosk/ERC1155-marketplace#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-waffle": "^2.0.0",
+    "chai": "^4.2.0",
+    "ethereum-waffle": "^3.2.0",
+    "ethers": "^5.0.19",
+    "hardhat": "^2.0.3"
+  }
+}
