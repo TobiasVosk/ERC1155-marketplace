@@ -466,4 +466,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-.cache/
+cache/
+
+.vscode/
