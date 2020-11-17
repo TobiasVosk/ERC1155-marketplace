@@ -467,5 +467,3 @@ dist
 .pnp.*
 
 cache/
-
-.vscode/
