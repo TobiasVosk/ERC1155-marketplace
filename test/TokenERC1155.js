@@ -23,22 +23,36 @@ describe("TokenERC1155 contract", function () {
   });
 
   describe("Minting", function () {
-    it("Should mint the amount of eth sent", async function () {
-      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)});
-      let addr1Balance = await hardhatToken.balanceOf(addr1.address, 0);
+    it("Should mint the amount of eth sent in sequential order", async function () {
+      //await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)})
+      let idMinted = await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)});
+      let addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
 
-      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(2)});
-      console.log("minted")
-      addr1Balance = await hardhatToken.balanceOf(addr1.address, 0);
-      expect(addr1Balance).to.equal(3);
+      let id2Minted = await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(2)});
+      addr1Balance = await hardhatToken.balanceOf(addr1.address, 2);
+      expect(addr1Balance).to.equal(2);
     });
 
     it("Should mint the amount of eth sent rounded to floor", async function () {
       await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1,5)});
-      console.log("minted")
-      const addr1Balance = await hardhatToken.balanceOf(addr1.address, 0);
+      const addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
+    });
+  })
+
+  describe("Transfering", function () {
+    it("Should should transfer from one user to another", async function () {
+      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)});
+      let addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
+      expect(addr1Balance).to.equal(1);
+
+      await hardhatToken.connect(addr1).safeTransferFrom(addr1.address, addr2.address,1,1,'0x');
+      let addr1BalanceAfter = await hardhatToken.balanceOf(addr1.address, 1);
+      let addr2Balance = await hardhatToken.balanceOf(addr2.address, 1);
+
+      expect(addr1BalanceAfter).to.equal(0);
+      expect(addr2Balance).to.equal(1);
     });
   })
 });
