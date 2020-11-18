@@ -30,7 +30,7 @@ contract Marketplace {
 
    event OrderCreated(
       address orderCreator,
-      address collectibleId,
+      uint collectibleId,
       uint quantity,
       uint price
    );
@@ -45,7 +45,7 @@ contract Marketplace {
         Order memory order = orders[collectibleId];
         daiInstance.transferFrom(msg.sender, order.orderCreator, order.quantity.mul(order.price));
         collectibleInstance.safeTransferFrom(address(this), msg.sender,collectibleId,order.quantity,'0x');
-        emit CollectibleBought(msg.sender, order.orderCreator, address(collectibleInstance), collectibleId, order.quantity, order.price)
+        emit CollectibleBought(msg.sender, order.orderCreator, address(collectibleInstance), collectibleId, order.quantity, order.price);
     } 
 
     function addOrder(uint collectibleId, uint quantity, uint price) public {
@@ -53,7 +53,7 @@ contract Marketplace {
         Order memory order = orders[collectibleId];
         collectibleInstance.safeTransferFrom(msg.sender,address(this),collectibleId,quantity,'0x');
         orders[collectibleId] = Order(msg.sender, quantity, price);
-        emit OrderCreated(msg.sender, collectibleId, quantity, price)
+        emit OrderCreated(msg.sender, collectibleId, quantity, price);
     } 
     
 }
