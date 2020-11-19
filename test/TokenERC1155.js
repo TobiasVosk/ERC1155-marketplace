@@ -25,12 +25,11 @@ describe("TokenERC1155 contract", function () {
   describe("Minting", function () {
     it("Should mint the amount of eth sent in sequential order", async function () {
       //await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)})
-      let idMinted = await hardhatToken.connect(addr1).mint({value: e18.mul(1)});
-      console.log(idMinted)
+      await hardhatToken.connect(addr1).mint({value: e18.mul(1)});
       let addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
 
-      let id2Minted = await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(2)});
+      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(2)});
       addr1Balance = await hardhatToken.balanceOf(addr1.address, 2);
       expect(addr1Balance).to.equal(2);
     });
