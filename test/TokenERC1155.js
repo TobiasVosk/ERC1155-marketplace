@@ -39,6 +39,7 @@ describe("TokenERC1155 contract", function () {
       const addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
     });
+    
   })
 
   describe("Transfering", function () {

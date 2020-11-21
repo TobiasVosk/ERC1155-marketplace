@@ -7,4 +7,8 @@ contract ERC20Mock is ERC20 {
         _mint(msg.sender, 10000);
     }
 
+    function mint(uint amount) public {
+        _mint(msg.sender, amount);
+    }
+
 }

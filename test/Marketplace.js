@@ -122,7 +122,7 @@ describe("TokenERC1155 contract", function () {
 
       addr2ERC20NewBalance = await hardhatTokenERC20.balanceOf(addr2.address);
 
-      await expect(addr2ERC20Balance).to.equal(addr2ERC20NewBalance);
+      await expect(addr2ERC20Balance.toNumber()).to.equal(addr2ERC20NewBalance.toNumber());
 
     });
 
