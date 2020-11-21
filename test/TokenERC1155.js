@@ -35,7 +35,9 @@ describe("TokenERC1155 contract", function () {
     });
 
     it("Should mint the amount of eth sent rounded to floor", async function () {
-      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1,5)});
+      let num = 152;
+      console.log(num)
+      await expect(hardhatToken.connect(addr1).mint({from: addr1.address, value: 1500000000000000000})).to.be.revertedWith('Value must be an integer in ETH.');
       const addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
     });

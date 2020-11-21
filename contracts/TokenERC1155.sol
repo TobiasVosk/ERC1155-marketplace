@@ -17,6 +17,7 @@ contract TokenERC1155 is ERC1155 {
     /// @return The id of the generated collectible
     function mint() public payable returns (uint) {
         require(msg.value >= 1 ether, "Value must be 1 or more eth for mint.");
+        require(msg.value.div(etherValue).mul(etherValue) == msg.value, "Value must be an integer in ETH.");
         uint newId = latestMinted.add(1);
         _mint(msg.sender, newId, uint(msg.value.div(etherValue)), "");
         latestMinted = newId;
