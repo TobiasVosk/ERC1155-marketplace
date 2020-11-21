@@ -27,11 +27,11 @@ The getOrder(uint collectibleId) method finds an already created order for 'coll
 
 Deployed contracts with the account: 0xC98D61E9707f6a674C700bB71afce8b007e9c60d
 
-ERC20 address: 0xd01E4E0b0221bE5AC113db703eFfe501e8F07567
+ERC20 address: 0x6f979ABc8712Fe4c6E5b88C9c9646F3b01603f37
 
-ERC1155 address: 0xaf8d21a29a6ea6879Ae67810b7bE24A5B59E1ca2
+ERC1155 address: 0x7260f3317D85c036AB6B6Bf272aD72F4e4F435ef
 
-Marketplace address: 0x0743ccd456b2a21b526bdB33d57bD4aec4268998
+Marketplace address: 0x28fB8e33cbd2696E0d4293f280461C0d0F8B56A8
 
 # Deploy a new instance:
 
