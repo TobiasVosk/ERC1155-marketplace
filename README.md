@@ -35,6 +35,6 @@ Marketplace address: 0x28fB8e33cbd2696E0d4293f280461C0d0F8B56A8
 
 # Deploy a new instance:
 
-1) Change the ROPSTEN_PRIVATE_KEY variable on hardhat.config.js with your own private key
+1) Change the ROPSTEN_PRIVATE_KEY variable on hardhat.config.js with your own private key or use the one provided
 2) Get ropsten ethereum from https://faucet.dimensions.network/
 3) Run command: npx hardhat run scripts/deploy.js --network ropsten
