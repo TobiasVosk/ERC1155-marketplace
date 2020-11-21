@@ -1,8 +1,6 @@
 // We import Chai to use its asserting functions here.
 const { expect } = require("chai");
 
-const e18 = ethers.BigNumber.from(10).pow(18);
-
 function toWei(n) {
   return web3.utils.toWei(n, 'ether')
 }
@@ -24,29 +22,24 @@ describe("TokenERC1155 contract", function () {
 
   describe("Minting", function () {
     it("Should mint the amount of eth sent in sequential order", async function () {
-      //await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)})
-      await hardhatToken.connect(addr1).mint({value: e18.mul(1)});
+      await hardhatToken.connect(addr1).mint({value: ethers.utils.parseEther('1')});
       let addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
 
-      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(2)});
+      await hardhatToken.connect(addr1).mint({from: addr1.address, value: ethers.utils.parseEther('2')});
       addr1Balance = await hardhatToken.balanceOf(addr1.address, 2);
       expect(addr1Balance).to.equal(2);
     });
 
-    it("Should mint the amount of eth sent rounded to floor", async function () {
-      let num = 152;
-      console.log(num)
-      await expect(hardhatToken.connect(addr1).mint({from: addr1.address, value: 1500000000000000000})).to.be.revertedWith('Value must be an integer in ETH.');
-      const addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
-      expect(addr1Balance).to.equal(1);
+    it("Should fail if the amount of eth sent is not int", async function () {
+      await expect(hardhatToken.connect(addr1).mint({from: addr1.address, value: ethers.utils.parseEther('1.5')})).to.be.revertedWith('Value must be an integer in ETH.');
     });
     
   })
 
   describe("Transfering", function () {
     it("Should should transfer from one user to another", async function () {
-      await hardhatToken.connect(addr1).mint({from: addr1.address, value: e18.mul(1)});
+      await hardhatToken.connect(addr1).mint({from: addr1.address, value: ethers.utils.parseEther('1')});
       let addr1Balance = await hardhatToken.balanceOf(addr1.address, 1);
       expect(addr1Balance).to.equal(1);
 
