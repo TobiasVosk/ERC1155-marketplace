@@ -8,11 +8,20 @@ async function main() {
     );
     
     console.log("Account balance:", (await deployer.getBalance()).toString());
-  
-    const Token = await ethers.getContractFactory("Token");
-    const token = await Token.deploy();
-  
-    console.log("Token address:", token.address);
+
+    TokenERC20 = await ethers.getContractFactory("ERC20Mock");
+    hardhatTokenERC20 = await TokenERC20.deploy();
+
+    TokenERC1155 = await ethers.getContractFactory("TokenERC1155");
+    hardhatToken = await TokenERC1155.deploy();
+
+    Marketplace = await ethers.getContractFactory("Marketplace");
+    hardhatMarketplace = await Marketplace.deploy(hardhatTokenERC20.address, hardhatToken.address);
+
+    console.log("ERC20 address:", hardhatTokenERC20.address);
+    console.log("ERC1155 address:", hardhatToken.address);
+    console.log("Marketplace address:", hardhatMarketplace.address);
+
   }
   
   main()
