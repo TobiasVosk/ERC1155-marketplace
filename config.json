@@ -1,0 +1,15 @@
+{
+    "contracts": {
+        "ropsten": {
+            "erc20": {
+                "address": "0x6f979ABc8712Fe4c6E5b88C9c9646F3b01603f37"
+            },
+            "erc1155": {
+                "address": "0x7260f3317D85c036AB6B6Bf272aD72F4e4F435ef"
+            },
+            "marketplace": {
+                "address": "0x28fB8e33cbd2696E0d4293f280461C0d0F8B56A8"
+            }
+        }
+    }
+}
