@@ -7,7 +7,7 @@ async function main() {
     const [deployer, acc2] = await ethers.getSigners();
   
     console.log(
-      `Creating order for collectibleId ${collectibleId} ERC1155 to address:`,
+      `Buying order for collectibleId ${collectibleId} ERC1155 to address:`,
       acc2.address
     );
 
