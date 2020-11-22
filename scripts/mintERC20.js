@@ -1,20 +1,21 @@
 const config = require('../config.json');
 const e18 = ethers.BigNumber.from(10).pow(18);
-const collectibleId = 9; //Change this with your desired collectibleId
+
 
 async function main() {
 
     const [deployer, acc2] = await ethers.getSigners();
   
     console.log(
-      `Creating order for collectibleId ${collectibleId} ERC1155 to address:`,
+      "Minting ERC20 to address:",
       acc2.address
     );
 
-    const tokenERC1155 = await ethers.getContractAt('TokenERC1155', config.contracts.ropsten.erc1155.address, acc2);
     const marketplace = await ethers.getContractAt('Marketplace', config.contracts.ropsten.marketplace.address, deployer);
-    await tokenERC1155.connect(acc2).setApprovalForAll(marketplace.address, true);
-    await marketplace.connect(acc2).addOrder(collectibleId, 1, 100);
+    const tokenERC20 = await ethers.getContractAt('ERC20Mock', config.contracts.ropsten.erc20.address, acc2);
+    await tokenERC20.connect(acc2).mint(e18.mul(10000));
+    await tokenERC20.connect(acc2).approve(marketplace.address, e18.mul(10000));
+
   }
   
   main()

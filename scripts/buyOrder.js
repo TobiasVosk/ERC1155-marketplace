@@ -11,10 +11,10 @@ async function main() {
       acc2.address
     );
 
-    const tokenERC1155 = await ethers.getContractAt('TokenERC1155', config.contracts.ropsten.erc1155.address, acc2);
+    const tokenERC20 = await ethers.getContractAt('ERC20Mock', config.contracts.ropsten.erc20.address, acc2);
     const marketplace = await ethers.getContractAt('Marketplace', config.contracts.ropsten.marketplace.address, deployer);
-    await tokenERC1155.connect(acc2).setApprovalForAll(marketplace.address, true);
-    await marketplace.connect(acc2).addOrder(collectibleId, 1, 100);
+    await tokenERC20.connect(acc2).approve(marketplace.address, e18.mul(10000));
+    await marketplace.connect(acc2).buy(collectibleId);
   }
   
   main()
