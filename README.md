@@ -1,4 +1,8 @@
-# TokenERC1155.sol
+# ERC1155-Marketplace
+
+## Contracts
+
+### TokenERC1155.sol
 This contract allows you to mint collectibles with sequantial ids for 1 eth each. 
 
 
@@ -7,7 +11,7 @@ The mint() function called with a round amount of eth as value mints the amount 
 
 
 
-# ERC1155-marketplace
+### ERC1155-marketplace
 A marketplace for a fixed price exchange between dai and an ERC1155 token
 
 
@@ -23,7 +27,7 @@ addOrder(uint collectibleId, uint quantity, uint price) allows you to add a new 
 The getOrder(uint collectibleId) method finds an already created order for 'collectibleId' and returns (addressOfOwner, quantityOfCollectibleId, pricePerUnitOfCollectibleId)
 
 
-# Deployed instance on ropsten:
+## Deployed instance on ropsten:
 
 Deployed contracts with the account: 0xC98D61E9707f6a674C700bB71afce8b007e9c60d
 
@@ -33,7 +37,25 @@ ERC1155 address: 0x7260f3317D85c036AB6B6Bf272aD72F4e4F435ef
 
 Marketplace address: 0x28fB8e33cbd2696E0d4293f280461C0d0F8B56A8
 
-# Deploy a new instance:
+## Scripts
+
+### Mint erc20Mock
+
+npx hardhat run scripts/mintERC20.js --network ropsten
+
+### Mint erc1155
+
+npx hardhat run scripts/mintERC1155.js --network ropsten
+
+### Create order marketplace
+
+npx hardhat run scripts/createOrderMarketplace.js --network ropsten
+
+### Buy order marketplace
+
+npx hardhat run scripts/buyOrder.js --network ropsten
+
+### Deploy a new instance:
 
 1) Change the ROPSTEN_PRIVATE_KEY variable on hardhat.config.js with your own private key or use the one provided
 2) Get ropsten ethereum from https://faucet.dimensions.network/
